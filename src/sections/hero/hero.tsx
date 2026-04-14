@@ -177,7 +177,7 @@ export default function Hero() {
 		<section
 			id="hero"
 			ref={heroRef}
-			className="relative flex h-[55vh] md:h-[50vh] w-full px-4 md:px-16 flex-col items-center justify-center gap-4"
+			className="relative flex h-screen min-h-[100svh] w-full px-4 md:px-16 flex-col items-center justify-center gap-4"
 		>
 			<div className="relative z-10 flex flex-col items-center gap-2">
 				<div style={{visibility: "hidden"}} ref={badgeRef} className="w-fit">
