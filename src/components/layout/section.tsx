@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { ShinyBadge } from "@/components/ui/shiny-badge";
+import { cn } from "@/lib/utils";
 
 type SectionProps = {
 	children: ReactNode;
@@ -45,7 +46,10 @@ export default function Section({
 				</p>
 			</div>
 			<div
-				className={`relative h-full w-full px-6 py-4 md:px-24 md:py-8 lg:px-32 ${className ?? ""}`}
+				className={cn(
+					"relative h-full w-full px-6 py-4 md:px-24 md:py-8 lg:px-32",
+					className,
+				)}
 			>
 				{children}
 			</div>

@@ -54,7 +54,7 @@ export type FooterSocialLink = {
 export const footerLinks: FooterLink[] = [
 	{ label: "Services", href: "#services" },
 	{ label: "Works", href: "#works" },
-	{ label: "Showcase", href: "#showcase" },
+	{ label: "Skills", href: "#skills" },
 	{ label: "Testimonials", href: "#testimonials" },
 	{ label: "FAQ", href: "#faq" },
 	{ label: "Blog", href: "#blog" },

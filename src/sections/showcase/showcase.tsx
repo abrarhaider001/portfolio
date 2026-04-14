@@ -1,31 +1,18 @@
-import { CubeIcon } from "@radix-ui/react-icons";
+import { BackpackIcon } from "@radix-ui/react-icons";
 import Section from "@/components/layout/section";
-import { cn } from "@/lib/utils";
-import ShowcaseCard from "@/sections/showcase/_components/showcase-card";
-import { showcaseHighlights } from "@/sections/showcase/_constants/showcase";
+import { SkillsGrid } from "@/sections/skills/_components/skills-grid";
 
 export default function Showcase() {
 	return (
 		<Section
-			id="showcase"
-			title="Highlight signature work or video studies"
-			description="Use these slots for showreels, filmed prototypes, or any captures that provide extra context for your process."
-			className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:auto-rows-[220px]"
-			badgeText="Showcase"
-			badgeIcon={<CubeIcon aria-hidden="true" className="size-3.5" />}
+			id="skills"
+			title="Skills & Tech Stack"
+			description="Tools, frameworks, and languages I use across full stack, mobile, and AI — compact grid with featured highlights."
+			className="py-0 pb-6 md:pb-8"
+			badgeText="Skills"
+			badgeIcon={<BackpackIcon aria-hidden="true" className="size-3.5" />}
 		>
-			{showcaseHighlights.map(
-				({ className, title, description, src, poster }) => (
-					<div key={title} className={cn("w-full", className)}>
-						<ShowcaseCard
-							title={title}
-							description={description}
-							src={src}
-							poster={poster}
-						/>
-					</div>
-				),
-			)}
+			<SkillsGrid />
 		</Section>
 	);
 }

@@ -200,9 +200,9 @@ export default function Hero() {
 		<section
 			id="hero"
 			ref={heroRef}
-			className="relative flex h-[70svh] min-h-[70svh] w-full items-center justify-center px-6 md:h-screen md:min-h-[100svh] md:px-24 lg:px-32"
+			className="relative flex w-full flex-col px-6 md:px-24 lg:px-32"
 		>
-			<div className="relative z-10 mx-auto flex w-full max-w-[80rem] flex-col items-center justify-center gap-14 md:gap-16 lg:flex-row lg:items-center">
+			<div className="relative z-10 mx-auto flex min-h-[70svh] w-full max-w-[80rem] flex-1 flex-col items-center justify-center gap-14 py-10 md:min-h-screen md:gap-16 lg:flex-row lg:items-center lg:py-0">
 				<div className="flex w-full lg:w-2/3 max-w-5xl flex-col items-center gap-4 md:gap-6 lg:items-start lg:text-left">
 					<div style={{ visibility: "hidden" }} ref={badgeRef} className="w-fit">
 						<ShinyBadge>
@@ -252,7 +252,7 @@ export default function Hero() {
 				</div>
 			</div>
 
-			<div className="absolute inset-0 z-0 h-full w-full pointer-events-none">
+			<div className="pointer-events-none absolute inset-0 z-0 min-h-full w-full">
 				<Background />
 			</div>
 		</section>
