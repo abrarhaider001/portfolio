@@ -38,10 +38,10 @@ export type BlogSeoPayload = {
 };
 
 const SITE_URL = "https://your-domain.com";
-const SITE_NAME = "Your Name";
-const DEFAULT_TITLE = "Your Name — Your Role";
+const SITE_NAME = "Abrar.";
+const DEFAULT_TITLE = "Abrar. — Full-Stack & AI Builder";
 const DEFAULT_DESCRIPTION =
-	"Use this space to describe the kind of work you do, the industries you serve, and what makes your approach unique.";
+	"I create seamless digital products across web, mobile apps, and AI systems - combining clean code, scalable architecture, and intelligent automation. From dynamic web platforms to powerful apps and smart AI solutions, I turn ideas into fast, reliable, and user-focused experiences.";
 const DEFAULT_KEYWORDS = [
 	"portfolio",
 	"freelance",
@@ -49,12 +49,12 @@ const DEFAULT_KEYWORDS = [
 	"developer",
 	"designer",
 ];
-const AUTHOR = "your-handle";
-const CONTACT_EMAIL = "hello@your-domain.com";
+const AUTHOR = "Abrar.";
+const CONTACT_EMAIL = "hello@abrar.com";
 const SOCIAL_PROFILES = [
-	"https://github.com/your-handle",
-	"https://www.linkedin.com/in/your-profile",
-	"https://www.instagram.com/your-handle",
+	"https://github.com/abrarhaider001",
+	"https://www.linkedin.com/in/abrar",
+	"https://www.instagram.com/abrar",
 ];
 
 export const absoluteUrl = (path = "/") => {

@@ -276,12 +276,12 @@ export function Navbar() {
 				>
 					<div className="flex items-center gap-2">
 						<LogoIcon className="size-4" />
-						<span>Your Name</span>
+						<span>Abrar.</span>
 					</div>
 				</Button>
 
 				<div
-				className="hidden absolute left-1/2 -translate-x-1/2 md:flex items-center gap-2"
+					className="hidden absolute left-1/2 -translate-x-1/2 md:flex items-center gap-2"
 					role="menubar"
 					aria-label="Desktop navigation"
 				>

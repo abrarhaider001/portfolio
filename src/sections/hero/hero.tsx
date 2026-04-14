@@ -65,9 +65,14 @@ export default function Hero() {
 			if (!hero) return;
 
 			gsap.set(
-      [badgeRef.current, titleRef.current, descriptionRef.current, actionsRef.current],
-      { autoAlpha: 1 }
-      );
+				[
+					badgeRef.current,
+					titleRef.current,
+					descriptionRef.current,
+					actionsRef.current,
+				],
+				{ autoAlpha: 1 }
+			);
 
 			const splits: SplitText[] = [];
 			context.add(() => {
@@ -107,7 +112,7 @@ export default function Hero() {
 					yPercent: 30,
 					autoAlpha: 0,
 					filter: "blur(16px)",
-					duration: 0.9,
+					duration: 0.55,
 					ease: premiumEase,
 				});
 			}
@@ -119,11 +124,11 @@ export default function Hero() {
 						yPercent: 30,
 						autoAlpha: 0,
 						filter: "blur(16px)",
-						stagger: 0.15,
-						duration: 0.9,
+						stagger: 0.1,
+						duration: 0.55,
 						ease: premiumEase,
 					},
-					"-=0.6",
+					"-=0.4",
 				);
 			}
 
@@ -134,11 +139,11 @@ export default function Hero() {
 						yPercent: 30,
 						autoAlpha: 0,
 						filter: "blur(16px)",
-						stagger: 0.15,
-						duration: 0.9,
+						stagger: 0.1,
+						duration: 0.55,
 						ease: premiumEase,
 					},
-					"-=0.6",
+					"-=0.4",
 				);
 			}
 
@@ -159,13 +164,14 @@ export default function Hero() {
 						autoAlpha: 1,
 						filter: "blur(0px)",
 						clearProps: "filter",
-						stagger: 0.15,
-						duration: 0.9,
+						stagger: 0.1,
+						duration: 0.55,
 						ease: premiumEase,
 					},
-					"-=0.6",
+					"-=0.4",
 				);
 			}
+
 		},
 		{
 			scope: heroRef,
@@ -177,48 +183,54 @@ export default function Hero() {
 		<section
 			id="hero"
 			ref={heroRef}
-			className="relative flex h-screen min-h-[100svh] w-full px-4 md:px-16 flex-col items-center justify-center gap-4"
+			className="relative flex h-[70svh] min-h-[70svh] w-full items-center justify-center px-4 md:h-screen md:min-h-[100svh] md:px-16"
 		>
-			<div className="relative z-10 flex flex-col items-center gap-2">
-				<div style={{visibility: "hidden"}} ref={badgeRef} className="w-fit">
-					<ShinyBadge>
-						<FrameIcon aria-hidden="true" className="size-3.5" />
-						Your Role Here
-					</ShinyBadge>
+			<div className="relative z-10 mx-auto flex w-full max-w-[80rem] flex-col items-center justify-center gap-14 md:gap-16 lg:flex-row lg:items-center">
+				<div className="flex w-full lg:w-2/3 max-w-5xl flex-col items-center gap-4 md:gap-6 lg:items-start lg:text-left">
+					<div style={{ visibility: "hidden" }} ref={badgeRef} className="w-fit">
+						<ShinyBadge>
+							<FrameIcon aria-hidden="true" className="size-3.5" />
+							Full-Stack & AI Builder
+						</ShinyBadge>
+					</div>
+					<h1
+						style={{ visibility: "hidden" }}
+						ref={titleRef}
+						className="mb-3 md:mb-4 text-4xl md:text-6xl lg:text-7xl text-center lg:text-left text-foreground font-medium text-balance 
+             			max-w-[42rem] md:max-w-[46rem] lg:max-w-[52rem] xl:max-w-[60rem]"
+					>
+						Build. Scale. Evolve.
+					</h1>
+					<p
+						style={{ visibility: "hidden" }}
+						ref={descriptionRef}
+						className="text-base md:text-lg text-center lg:text-left text-foreground/70 font-medium text-balance leading-relaxed max-w-xl"
+					>
+						From web platforms to mobile apps and AI-powered systems — I design and develop end-to-end solutions that are fast, scalable, and user-focused. Every product is built with clean architecture and real-world performance in mind.
+					</p>
+					<div
+						ref={actionsRef}
+						className="mt-3 md:mt-4 relative z-10 flex items-center justify-center lg:justify-start gap-2 md:gap-3"
+					>
+						<Button
+							style={{ visibility: "hidden" }}
+							variant="default"
+							size="md"
+							onClick={() => scrollTo("#contact")}
+						>
+							Start a Project
+						</Button>
+						<Button
+							style={{ visibility: "hidden" }}
+							variant="secondary"
+							size="md"
+							onClick={() => scrollTo("#works")}
+						>
+							View Portfolio
+						</Button>
+					</div>
 				</div>
-				<h1
-				  style={{visibility: "hidden"}}
-					ref={titleRef}
-					className="text-3xl text-center text-foreground font-medium text-balance max-w-3xl"
-				>
-					Add a headline that tells people what you design, build, or launch.
-				</h1>
-				<p
-		      style={{visibility: "hidden"}}
-					ref={descriptionRef}
-					className="text-base md:text-lg text-center text-foreground/70 font-medium text-balance leading-relaxed max-w-xl"
-				>
-					Use this paragraph to summarize your craft, industries served, or the
-					results clients can expect when working with you.
-				</p>
-			</div>
-			<div ref={actionsRef} className="relative z-10  flex items-center gap-2">
-				<Button
-			    style={{visibility: "hidden"}}
-					variant="default"
-					size="md"
-					onClick={() => scrollTo("#contact")}
-				>
-					Start a project
-				</Button>
-				<Button
-		      style={{visibility: "hidden"}}
-					variant="secondary"
-					size="md"
-					onClick={() => scrollTo("#works")}
-				>
-					View portfolio
-				</Button>
+				<div aria-hidden="true" className="hidden lg:block lg:w-1/3" />
 			</div>
 
 			<div className="absolute inset-0 z-0 h-full w-full pointer-events-none">
