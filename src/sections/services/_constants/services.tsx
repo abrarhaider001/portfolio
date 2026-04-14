@@ -27,7 +27,7 @@ export interface ServiceFeature {
 	background: ReactNode;
 }
 
-const convertingCardIcons: ConvertingCardIconSet = {
+export const convertingCardIcons: ConvertingCardIconSet = {
 	destination: {
 		id: "client",
 		Icon: PersonIcon,

@@ -5,7 +5,7 @@ import { Background } from "@/sections/hero/_components/background";
 
 export function NotFound() {
 	return (
-		<section className="relative flex h-svh w-full flex-col items-center justify-center overflow-hidden px-4 py-16 text-center md:px-16">
+		<section className="relative flex h-svh w-full flex-col items-center justify-center overflow-hidden px-6 py-16 text-center md:px-24 lg:px-32">
 			<div className="relative z-10 flex max-w-2xl flex-col items-center gap-5">
 				<div className="w-fit">
 					<ShinyBadge>We lost this one</ShinyBadge>

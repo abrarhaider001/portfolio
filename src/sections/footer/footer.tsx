@@ -20,7 +20,7 @@ export default function Footer() {
 
 	return (
 		<footer className="w-full">
-			<div className="w-full md:max-w-5xl mx-auto grid gap-8 px-4 py-8 md:p-8 md:grid-cols-[minmax(0,1fr)_120px] border-border/80 border-x border-dashed">
+			<div className="mx-auto grid w-full gap-8 px-6 py-8 md:grid-cols-[minmax(0,1fr)_120px] md:px-24 md:py-8 lg:px-32">
 				<div className="flex flex-col gap-4">
 					<div className="flex flex-col gap-3">
 						<div className="flex gap-2 items-center text-foreground">
@@ -68,7 +68,7 @@ export default function Footer() {
 			</div>
 
 			<div className="text-xs text-foreground/70 border-t border-border/80">
-				<div className="w-full md:max-w-5xl mx-auto flex flex-col md:flex-row gap-1 px-4 py-4 md:px-2 items-center justify-between">
+				<div className="mx-auto flex w-full flex-col items-center justify-between gap-1 px-6 py-4 md:flex-row md:px-24 lg:px-32">
 					<p>
 						© {currentYear} Your Name. Update this footer text to match your
 						brand.
@@ -82,3 +82,4 @@ export default function Footer() {
 		</footer>
 	);
 }
+

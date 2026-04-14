@@ -11,6 +11,7 @@ import {
 } from "@/lib/gsap-config";
 import { useLenis } from "@/lib/lenis-context";
 import { Background } from "@/sections/hero/_components/background";
+import { HeroWorkflow } from "@/sections/hero/_components/hero-workflow";
 
 registerGsapPlugins();
 
@@ -20,6 +21,7 @@ export default function Hero() {
 	const titleRef = useRef<HTMLHeadingElement>(null);
 	const descriptionRef = useRef<HTMLParagraphElement>(null);
 	const actionsRef = useRef<HTMLDivElement>(null);
+	const workflowRef = useRef<HTMLDivElement>(null);
 	const [fontsLoaded, setFontsLoaded] = useState(() => {
 		if (typeof document === "undefined") {
 			return false;
@@ -70,6 +72,7 @@ export default function Hero() {
 					titleRef.current,
 					descriptionRef.current,
 					actionsRef.current,
+					workflowRef.current,
 				],
 				{ autoAlpha: 1 }
 			);
@@ -172,6 +175,20 @@ export default function Hero() {
 				);
 			}
 
+			if (workflowRef.current) {
+				timeline.from(
+					workflowRef.current,
+					{
+						xPercent: 10,
+						autoAlpha: 0,
+						filter: "blur(12px)",
+						duration: 0.55,
+						ease: premiumEase,
+					},
+					"-=0.35",
+				);
+			}
+
 		},
 		{
 			scope: heroRef,
@@ -183,7 +200,7 @@ export default function Hero() {
 		<section
 			id="hero"
 			ref={heroRef}
-			className="relative flex h-[70svh] min-h-[70svh] w-full items-center justify-center px-4 md:h-screen md:min-h-[100svh] md:px-16"
+			className="relative flex h-[70svh] min-h-[70svh] w-full items-center justify-center px-6 md:h-screen md:min-h-[100svh] md:px-24 lg:px-32"
 		>
 			<div className="relative z-10 mx-auto flex w-full max-w-[80rem] flex-col items-center justify-center gap-14 md:gap-16 lg:flex-row lg:items-center">
 				<div className="flex w-full lg:w-2/3 max-w-5xl flex-col items-center gap-4 md:gap-6 lg:items-start lg:text-left">
@@ -230,7 +247,9 @@ export default function Hero() {
 						</Button>
 					</div>
 				</div>
-				<div aria-hidden="true" className="hidden lg:block lg:w-1/3" />
+				<div className="hidden w-full shrink-0 justify-end lg:flex lg:w-1/3">
+					<HeroWorkflow ref={workflowRef} style={{ visibility: "hidden" }} />
+				</div>
 			</div>
 
 			<div className="absolute inset-0 z-0 h-full w-full pointer-events-none">

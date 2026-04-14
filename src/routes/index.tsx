@@ -20,7 +20,7 @@ function App() {
 	return (
 		<>
 			<Hero />
-			<main className="mx-auto flex flex-col items-center justify-start w-full md:w-7xl md:border-x border-border divide-y divide-border/80">
+			<main className="mx-auto flex w-full flex-col items-stretch justify-start divide-y divide-border/80">
 				<Services />
 				<Works />
 				<Showcase />

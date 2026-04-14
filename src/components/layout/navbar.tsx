@@ -255,7 +255,7 @@ export function Navbar() {
 
 	return (
 		<nav
-			className="fixed top-2 inset-x-0 z-50 flex justify-center px-2 md:px-4"
+			className="fixed top-2 inset-x-0 z-50 flex justify-center px-6 md:px-24 lg:px-32"
 			aria-label="Main navigation"
 		>
 			<div

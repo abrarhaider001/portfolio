@@ -42,14 +42,14 @@ function BlogPost() {
 		) ?? [];
 
 	return (
-		<main className="mx-auto flex w-full flex-col items-center justify-start md:w-7xl md:border-x border-border divide-y divide-border/80">
+		<main className="mx-auto flex w-full flex-col items-stretch justify-start divide-y divide-border/80">
 			<article className="flex w-full flex-col text-foreground">
 				<div className="relative w-full overflow-hidden border-b border-border/80">
 					<div className="h-[55vh] md:h-[50vh] w-full pointer-events-none">
 						<Background />
 					</div>
 					<div className="absolute bottom-4 left-4 right-4 flex flex-col gap-4 md:bottom-8 md:left-8 md:right-8">
-						<header className="flex flex-col gap-4 px-4 py-8 md:px-8">
+						<header className="flex flex-col gap-4 px-6 py-8 md:px-24 lg:px-32">
 							{formattedDate ? (
 								<span className="text-xs font-medium text-foreground/45">
 									{formattedDate}
@@ -84,7 +84,7 @@ function BlogPost() {
 					</div>
 				</div>
 
-				<section className="mx-auto flex w-full max-w-5xl flex-col px-4 py-8 md:p-8 md:border-x border-b border-border/80 border-dashed">
+				<section className="mx-auto flex w-full flex-col border-b border-border/80 px-6 py-8 md:px-24 md:py-8 lg:px-32">
 					<div className="min-h-[200px]">
 						<Suspense fallback={<ArticleSkeleton />}>
 							<PostContent slug={slug} />

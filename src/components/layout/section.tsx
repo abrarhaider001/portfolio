@@ -26,9 +26,9 @@ export default function Section({
 	return (
 		<section
 			id={id}
-			className={`w-full md:max-w-5xl md:border-x border-border/80 border-dashed divide-y divide-border/80 divide-dashed flex flex-col items-start justify-start ${wrapperClassName ?? ""}`}
+			className={`flex w-full flex-col items-start justify-start divide-y divide-border/80 divide-dashed ${wrapperClassName ?? ""}`}
 		>
-			<div className="w-full flex flex-col gap-2 px-4 py-8 md:p-8">
+			<div className="flex w-full flex-col gap-2 px-6 py-8 md:px-24 lg:px-32">
 				{badgeText ? (
 					<div className="w-fit">
 						<ShinyBadge>
@@ -44,9 +44,12 @@ export default function Section({
 					{description}
 				</p>
 			</div>
-			<div className={`relative w-full h-full p-4 md:p-8 ${className ?? ""}`}>
+			<div
+				className={`relative h-full w-full px-6 py-4 md:px-24 md:py-8 lg:px-32 ${className ?? ""}`}
+			>
 				{children}
 			</div>
 		</section>
 	);
 }
+
