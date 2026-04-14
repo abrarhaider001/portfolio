@@ -16,9 +16,10 @@ export default function Works() {
 			{works.map((item) => (
 				<WorksCard
 					key={item.title}
-					image={item.image}
+					images={item.images}
 					title={item.title}
 					description={item.description}
+					technologies={item.technologies}
 					link={item.link}
 				/>
 			))}
