@@ -10,20 +10,20 @@ export const contactDetailItems: ContactDetailItem[] = [
 	{
 		id: "location",
 		title: "Location",
-		lines: ["Remote-first studio", "Chicago, IL · worldwide"],
-		href: "https://maps.google.com/?q=Chicago+IL",
+		lines: ["Lahore, Pakistan"],
+		href: "https://maps.google.com/?q=Lahore+Pakistan",
 		external: true,
 	},
 	{
 		id: "phone",
 		title: "Phone",
-		lines: ["+1 (555) 234-5678"],
-		href: "tel:+15552345678",
+		lines: ["+92 301 0668945"],
+		href: "tel:+923010668945",
 	},
 	{
 		id: "email",
 		title: "Email",
-		lines: ["hello@example.com"],
-		href: "mailto:hello@example.com",
+		lines: ["abrarhaider157@gmail.com"],
+		href: "mailto:abrarhaider157@gmail.com",
 	},
 ];

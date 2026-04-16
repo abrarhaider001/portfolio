@@ -4,6 +4,7 @@ import { LogoIcon } from "@/components/icons/logo-icon";
 import { useLenis } from "@/lib/lenis-context";
 import {
 	footerAuthor,
+	footerContact,
 	footerLinks,
 	footerSecondaryLinks,
 	footerSocialLinks,
@@ -76,6 +77,29 @@ export default function Footer() {
 						</p>
 					</div>
 
+					<div className="flex flex-col gap-1.5 text-xs font-medium text-foreground/70">
+						<a
+							href={footerContact.locationHref}
+							target="_blank"
+							rel="noreferrer"
+							className="w-fit rounded transition-[color,opacity] duration-100 ease-out-quad hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50"
+						>
+							{footerContact.location}
+						</a>
+						<a
+							href={footerContact.phoneHref}
+							className="w-fit rounded transition-[color,opacity] duration-100 ease-out-quad hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50"
+						>
+							{footerContact.phoneDisplay}
+						</a>
+						<a
+							href={footerContact.emailHref}
+							className="w-fit rounded transition-[color,opacity] duration-100 ease-out-quad hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50"
+						>
+							{footerContact.email}
+						</a>
+					</div>
+
 					<div className="flex flex-wrap items-center gap-2">
 						{footerSocialLinks.map(({ label, href, icon: Icon }) => (
 							<a
@@ -97,12 +121,9 @@ export default function Footer() {
 			</div>
 
 			<div className="border-t border-border/80 text-xs text-foreground/70">
-				<div className="mx-auto flex w-full flex-col items-start justify-between gap-2 px-6 py-4 md:flex-row md:items-center md:px-24 lg:px-32">
+				<div className="mx-auto flex w-full flex-col px-6 py-4 md:px-24 lg:px-32">
 					<p>
 						© {currentYear} {footerAuthor.displayName}. All rights reserved.
-					</p>
-					<p className="max-w-md text-pretty md:text-right">
-						Open to freelance, contract, and long-term product work worldwide.
 					</p>
 				</div>
 			</div>

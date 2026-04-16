@@ -56,6 +56,15 @@ export const footerAuthor = {
 	bio: "Full-stack and AI-focused builder. I ship fast, maintainable products across web, mobile, and backend systems.",
 } as const;
 
+export const footerContact = {
+	location: "Lahore, Pakistan",
+	locationHref: "https://maps.google.com/?q=Lahore+Pakistan",
+	phoneDisplay: "+92 301 0668945",
+	phoneHref: "tel:+923010668945",
+	email: "abrarhaider157@gmail.com",
+	emailHref: "mailto:abrarhaider157@gmail.com",
+} as const;
+
 export const footerLinks: FooterLink[] = [
 	{ label: "Services", href: "#services" },
 	{ label: "Works", href: "#works" },
@@ -76,17 +85,17 @@ export const footerSecondaryLinks: FooterLink[] = [
 export const footerSocialLinks: FooterSocialLink[] = [
 	{
 		label: "GitHub",
-		href: "https://github.com/your-handle",
+		href: "https://github.com/abrarhaider001",
 		icon: IconGithub,
 	},
 	{
 		label: "LinkedIn",
-		href: "https://www.linkedin.com/in/your-profile",
+		href: "https://www.linkedin.com/in/abrar-haider-044063272",
 		icon: IconLinkedIn,
 	},
 	{
 		label: "Instagram",
-		href: "https://www.instagram.com/your-handle",
+		href: "https://www.instagram.com/abrar_haider_001",
 		icon: IconInstagram,
 	},
 ];

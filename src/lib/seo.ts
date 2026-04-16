@@ -50,11 +50,11 @@ const DEFAULT_KEYWORDS = [
 	"designer",
 ];
 const AUTHOR = "Abrar.";
-const CONTACT_EMAIL = "hello@abrar.com";
+const CONTACT_EMAIL = "abrarhaider157@gmail.com";
 const SOCIAL_PROFILES = [
 	"https://github.com/abrarhaider001",
-	"https://www.linkedin.com/in/abrar",
-	"https://www.instagram.com/abrar",
+	"https://www.linkedin.com/in/abrar-haider-044063272",
+	"https://www.instagram.com/abrar_haider_001",
 ];
 
 export const absoluteUrl = (path = "/") => {
