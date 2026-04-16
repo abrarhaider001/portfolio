@@ -1,4 +1,6 @@
 import { useGSAP } from "@gsap/react";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useId, useRef, useState } from "react";
 import { LogoIcon } from "@/components/icons/logo-icon";
 import { Button } from "@/components/ui/button";
@@ -14,14 +16,19 @@ import { cn } from "@/lib/utils";
 
 registerGsapPlugins();
 
-const NAV_LINKS = [
-	{ label: "Services", target: "#services" },
-	{ label: "Works", target: "#works" },
-	{ label: "Skills", target: "#skills" },
-	{ label: "Testimonials", target: "#testimonials" },
-	{ label: "FAQ", target: "#faq" },
-	{ label: "Blog", target: "#blog" },
-] as const;
+type NavLinkItem = { kind: "link"; label: string; target: string };
+type NavAboutItem = { kind: "about" };
+type NavItem = NavLinkItem | NavAboutItem;
+
+const NAV_ITEMS: NavItem[] = [
+	{ kind: "link", label: "Services", target: "#services" },
+	{ kind: "link", label: "Works", target: "#works" },
+	{ kind: "about" },
+	{ kind: "link", label: "Skills", target: "#skills" },
+	{ kind: "link", label: "Testimonials", target: "#testimonials" },
+	{ kind: "link", label: "FAQ", target: "#faq" },
+	{ kind: "link", label: "Blog", target: "#blog" },
+];
 
 const colorWithOpacity = (token: string, opacity: number) => {
 	const clamped = Math.min(Math.max(opacity, 0), 1);
@@ -43,8 +50,13 @@ export function Navbar() {
 	const lineTwoRef = useRef<HTMLSpanElement>(null);
 	const lineThreeRef = useRef<HTMLSpanElement>(null);
 	const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
+	const desktopAboutPanelRef = useRef<HTMLDivElement>(null);
+	const desktopAboutTl = useRef<gsap.core.Timeline | null>(null);
+	const mobileAboutSubmenuRef = useRef<HTMLDivElement>(null);
 	const { scrollTo } = useLenis();
 	const mobileMenuId = useId();
+	const aboutSubmenuId = useId();
+	const [aboutSubmenuOpen, setAboutSubmenuOpen] = useState(false);
 
 	const toggleTl = useRef<gsap.core.Timeline | null>(null);
 	const menuTl = useRef<gsap.core.Timeline | null>(null);
@@ -154,6 +166,32 @@ export function Navbar() {
 		{ scope: menuContentRef },
 	);
 
+	useGSAP(
+		() => {
+			const panel = desktopAboutPanelRef.current;
+			if (!panel) return;
+
+			gsap.set(panel, { autoAlpha: 0, y: -10 });
+			const tl = gsap.timeline({
+				paused: true,
+				defaults: {
+					duration: 0.22,
+					ease: premiumEase,
+				},
+			});
+
+			tl.to(panel, { autoAlpha: 1, y: 0 });
+
+			desktopAboutTl.current = tl;
+
+			return () => {
+				tl.kill();
+				desktopAboutTl.current = null;
+			};
+		},
+		{ scope: desktopAboutPanelRef },
+	);
+
 	useEffect(() => {
 		const iconTl = toggleTl.current;
 		const mTl = menuTl.current;
@@ -166,6 +204,30 @@ export function Navbar() {
 			mTl?.reverse();
 		}
 	}, [mobileMenuOpen]);
+
+	useEffect(() => {
+		if (!mobileMenuOpen) {
+			setAboutSubmenuOpen(false);
+		}
+	}, [mobileMenuOpen]);
+
+	useEffect(() => {
+		const el = mobileAboutSubmenuRef.current;
+		if (!el) return;
+
+		gsap.killTweensOf(el);
+
+		if (!mobileMenuOpen) {
+			gsap.set(el, { height: 0 });
+			return;
+		}
+
+		gsap.to(el, {
+			height: aboutSubmenuOpen ? "auto" : 0,
+			duration: 0.28,
+			ease: premiumEase,
+		});
+	}, [aboutSubmenuOpen, mobileMenuOpen]);
 
 	useGSAP(
 		() => {
@@ -250,7 +312,15 @@ export function Navbar() {
 
 	const handleScroll = (target: string) => {
 		setMobileMenuOpen(false);
+		setAboutSubmenuOpen(false);
+		desktopAboutTl.current?.reverse();
 		scrollTo(target);
+	};
+
+	const closeAboutNav = () => {
+		setMobileMenuOpen(false);
+		setAboutSubmenuOpen(false);
+		desktopAboutTl.current?.reverse();
 	};
 
 	return (
@@ -285,18 +355,67 @@ export function Navbar() {
 					role="menubar"
 					aria-label="Desktop navigation"
 				>
-					{NAV_LINKS.map((link) => (
-						<Button
-							key={link.target}
-							variant="ghost"
-							size="sm"
-							className="text-xs text-foreground/70 hover:text-foreground hover:bg-transparent"
-							onClick={() => handleScroll(link.target)}
-							role="menuitem"
-						>
-							{link.label}
-						</Button>
-					))}
+					{NAV_ITEMS.map((item) =>
+						item.kind === "about" ? (
+							<div
+								key="about"
+								className="relative"
+								onMouseEnter={() => desktopAboutTl.current?.play()}
+								onMouseLeave={() => desktopAboutTl.current?.reverse()}
+							>
+								<Button
+									type="button"
+									variant="ghost"
+									size="sm"
+									className="gap-1 px-2 text-xs text-foreground/70 hover:bg-transparent hover:text-foreground"
+									aria-haspopup="menu"
+								>
+									About
+									<ChevronDownIcon
+										aria-hidden="true"
+										className="size-3 opacity-70"
+									/>
+								</Button>
+								<div className="absolute top-full left-0 z-[60] pt-1.5">
+									<div
+										ref={desktopAboutPanelRef}
+										role="menu"
+										aria-label="About"
+										className="min-w-[11rem] rounded-lg border border-border/80 bg-card/95 py-1 shadow-lg backdrop-blur-md"
+										style={{ visibility: "hidden" }}
+									>
+										<Link
+											to="/education"
+											role="menuitem"
+											className="flex h-9 w-full items-center rounded-none px-3 text-xs text-foreground/70 transition-[color,background-color] duration-100 ease-out-quad hover:bg-muted/50 hover:text-foreground"
+											onClick={closeAboutNav}
+										>
+											Education
+										</Link>
+										<Link
+											to="/experience"
+											role="menuitem"
+											className="flex h-9 w-full items-center rounded-none px-3 text-xs text-foreground/70 transition-[color,background-color] duration-100 ease-out-quad hover:bg-muted/50 hover:text-foreground"
+											onClick={closeAboutNav}
+										>
+											Experience
+										</Link>
+									</div>
+								</div>
+							</div>
+						) : (
+							<Button
+								key={item.target}
+								variant="ghost"
+								size="sm"
+								className="text-xs text-foreground/70 hover:bg-transparent hover:text-foreground"
+								onClick={() => handleScroll(item.target)}
+								role="menuitem"
+							>
+								{item.label}
+							</Button>
+						),
+					)}
 				</div>
 
 				<div className="hidden md:flex items-center gap-2">
@@ -361,18 +480,66 @@ export function Navbar() {
 					className="rounded-lg border bg-card/75 p-4 shadow-lg flex flex-col gap-2 overflow-hidden"
 					style={{ visibility: "hidden" }}
 				>
-					{NAV_LINKS.map((link) => (
-						<Button
-							key={link.target}
-							variant="ghost"
-							size="sm"
-							className="justify-start px-0 text-foreground/70 hover:text-foreground"
-							onClick={() => handleScroll(link.target)}
-							role="menuitem"
-						>
-							{link.label}
-						</Button>
-					))}
+					{NAV_ITEMS.map((item) =>
+						item.kind === "about" ? (
+							<div key="about" className="flex flex-col">
+								<Button
+									type="button"
+									variant="ghost"
+									size="sm"
+									className="justify-between px-0 text-foreground/70 hover:text-foreground"
+									aria-expanded={aboutSubmenuOpen}
+									aria-controls={aboutSubmenuId}
+									onClick={() => setAboutSubmenuOpen((open) => !open)}
+								>
+									About
+									<ChevronDownIcon
+										aria-hidden="true"
+										className={cn(
+											"size-4 shrink-0 opacity-70 transition-transform duration-200 ease-out",
+											aboutSubmenuOpen && "rotate-180",
+										)}
+									/>
+								</Button>
+								<div
+									id={aboutSubmenuId}
+									ref={mobileAboutSubmenuRef}
+									className="overflow-hidden"
+									style={{ height: 0 }}
+								>
+									<div className="flex flex-col gap-1 border-border/60 border-l py-1 pl-3">
+										<Link
+											to="/education"
+											className="inline-flex min-h-9 items-center rounded-md px-0 text-sm text-foreground/70 transition-[color,background-color] duration-100 ease-out-quad hover:bg-transparent hover:text-foreground"
+											role="menuitem"
+											onClick={closeAboutNav}
+										>
+											Education
+										</Link>
+										<Link
+											to="/experience"
+											className="inline-flex min-h-9 items-center rounded-md px-0 text-sm text-foreground/70 transition-[color,background-color] duration-100 ease-out-quad hover:bg-transparent hover:text-foreground"
+											role="menuitem"
+											onClick={closeAboutNav}
+										>
+											Experience
+										</Link>
+									</div>
+								</div>
+							</div>
+						) : (
+							<Button
+								key={item.target}
+								variant="ghost"
+								size="sm"
+								className="justify-start px-0 text-foreground/70 hover:text-foreground"
+								onClick={() => handleScroll(item.target)}
+								role="menuitem"
+							>
+								{item.label}
+							</Button>
+						),
+					)}
 					<Button
 						variant="default"
 						size="sm"

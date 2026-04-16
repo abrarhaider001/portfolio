@@ -7,6 +7,7 @@ type SectionProps = {
 	children: ReactNode;
 	title?: string;
 	description?: string;
+	descriptionClassName?: string;
 	className?: string;
 	wrapperClassName?: string;
 	id?: string;
@@ -18,6 +19,7 @@ export default function Section({
 	children,
 	title,
 	description,
+	descriptionClassName,
 	className,
 	wrapperClassName,
 	id,
@@ -45,7 +47,12 @@ export default function Section({
 						</h2>
 					) : null}
 					{description ? (
-						<p className="text-base text-foreground/70 font-medium text-balance leading-relaxed md:max-w-1/2">
+						<p
+							className={cn(
+								"text-base font-medium text-balance leading-relaxed text-foreground/70",
+								descriptionClassName ?? "md:max-w-1/2",
+							)}
+						>
 							{description}
 						</p>
 					) : null}

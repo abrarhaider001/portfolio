@@ -68,6 +68,8 @@ export const footerLinks: FooterLink[] = [
 export const footerSecondaryLinks: FooterLink[] = [
 	{ label: "Contact", href: "#contact" },
 	{ label: "Blog", href: "/blog" },
+	{ label: "Education", href: "/education" },
+	{ label: "Experience", href: "/experience" },
 	{ label: "Home", href: "#hero" },
 ];
 
