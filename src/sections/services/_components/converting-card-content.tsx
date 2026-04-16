@@ -97,7 +97,7 @@ export function ConvertingCardContent({
 	);
 }
 
-interface AnimatedBeamProps {
+export interface AnimatedBeamProps {
 	className?: string;
 	containerRef: RefObject<HTMLElement | null>;
 	fromRef: RefObject<HTMLElement | null>;
@@ -117,7 +117,7 @@ interface AnimatedBeamProps {
 	endYOffset?: number;
 }
 
-const AnimatedBeam = ({
+export const AnimatedBeam = ({
 	className,
 	containerRef,
 	fromRef,
