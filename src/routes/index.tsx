@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getAllPostsMeta } from "@/sections/blog/_server/posts";
+import { pickRandomPreviewPosts } from "@/sections/blog/_utils/pick-preview-posts";
 import Blog from "@/sections/blog/blog";
 import Contact from "@/sections/contact/contact";
 import FAQ from "@/sections/faq/faq";
@@ -11,12 +12,15 @@ import Testimonials from "@/sections/testimonials/testimonials";
 import Works from "@/sections/works/works";
 
 export const Route = createFileRoute("/")({
-	loader: () => getAllPostsMeta(),
+	loader: async () => {
+		const all = await getAllPostsMeta();
+		return { blogPreview: pickRandomPreviewPosts(all, 2) };
+	},
 	component: App,
 });
 
 function App() {
-	const posts = Route.useLoaderData();
+	const { blogPreview } = Route.useLoaderData();
 	return (
 		<>
 			<Hero />
@@ -26,7 +30,7 @@ function App() {
 				<Showcase />
 				<Testimonials />
 				<FAQ />
-				<Blog posts={posts} />
+				<Blog posts={blogPreview} />
 				<Contact />
 				<Footer />
 			</main>

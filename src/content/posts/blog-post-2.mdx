@@ -1,0 +1,30 @@
+---
+title: "When retries make things worse: fixing thundering herds"
+date: "2025-12-08"
+excerpt: "A client saw cascading timeouts after a deploy. Here is how we traced overlapping retries, tightened backoff, and restored stable error budgets."
+tags:
+  - software-development
+  - reliability
+  - apis
+  - debugging
+---
+
+# Problem
+
+After a traffic spike, a service that called a third-party API started failing—and **every** failure triggered an immediate retry from multiple workers. Latency climbed, the downstream API rate-limited us, and healthy requests were starved.
+
+# What we checked first
+
+- **Retry policy**: same delay for every client, no jitter, no cap on in-flight retries.
+- **Timeouts**: shorter on the caller than on the callee, causing abandoned work that still consumed quota.
+- **Observability**: we correlated `429` spikes with deploy time and queue depth.
+
+# Solution (high level)
+
+1. **Exponential backoff with jitter** so retries do not line up in lockstep.
+2. **Circuit breaking** after sustained failures—fail fast instead of hammering a sick dependency.
+3. **Bounded concurrency** for outbound calls so one bad route cannot exhaust the pool.
+
+# Takeaway
+
+Retries are a feature of your system design, not a free fix. If you cannot explain *who* retries, *when*, and *how many at once*, you will eventually retry your way into an outage.
