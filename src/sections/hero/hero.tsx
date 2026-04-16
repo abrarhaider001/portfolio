@@ -200,9 +200,13 @@ export default function Hero() {
 			ref={heroRef}
 			className="relative flex w-full flex-col px-6 md:px-24 lg:px-32"
 		>
-			<div className="relative z-10 mx-auto flex min-h-[70svh] w-full max-w-[80rem] flex-1 flex-col items-center justify-center gap-14 py-10 md:min-h-screen md:gap-16 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:py-0">
+			<div className="relative z-10 mx-auto flex w-full max-w-[80rem] flex-1 flex-col items-center justify-start gap-8 pb-8 pt-24 md:gap-10 md:pt-28 lg:min-h-screen lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:py-12">
 				<div className="flex w-full max-w-5xl flex-1 flex-col items-center gap-4 md:gap-6 lg:max-w-none lg:min-w-0 lg:flex-1 lg:items-start lg:justify-start lg:text-left xl:max-w-[52rem]">
-					<div style={{ visibility: "hidden" }} ref={badgeRef} className="w-fit">
+					<div
+						style={{ visibility: "hidden" }}
+						ref={badgeRef}
+						className="mx-auto w-fit lg:mx-0"
+					>
 						<ShinyBadge>
 							<FrameIcon aria-hidden="true" className="size-3.5" />
 							Full-Stack & AI Builder
@@ -219,7 +223,7 @@ export default function Hero() {
 					<p
 						style={{ visibility: "hidden" }}
 						ref={descriptionRef}
-						className="text-base md:text-lg text-center text-foreground/70 font-medium text-balance leading-relaxed max-w-xl lg:text-left"
+						className="mx-auto max-w-xl text-balance text-center text-base font-medium leading-relaxed text-foreground/70 md:text-lg lg:mx-0 lg:text-left"
 					>
 						From web platforms to mobile apps and AI-powered systems — I design and develop end-to-end solutions that are fast, scalable, and user-focused. Every product is built with clean architecture and real-world performance in mind.
 					</p>
