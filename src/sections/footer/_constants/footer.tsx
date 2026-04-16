@@ -51,6 +51,11 @@ export type FooterSocialLink = {
 	icon: React.FC<React.SVGProps<SVGSVGElement>>;
 };
 
+export const footerAuthor = {
+	displayName: "Abrar",
+	bio: "Full-stack and AI-focused builder. I ship fast, maintainable products across web, mobile, and backend systems.",
+} as const;
+
 export const footerLinks: FooterLink[] = [
 	{ label: "Services", href: "#services" },
 	{ label: "Works", href: "#works" },
@@ -58,6 +63,12 @@ export const footerLinks: FooterLink[] = [
 	{ label: "Testimonials", href: "#testimonials" },
 	{ label: "FAQ", href: "#faq" },
 	{ label: "Blog", href: "#blog" },
+];
+
+export const footerSecondaryLinks: FooterLink[] = [
+	{ label: "Contact", href: "#contact" },
+	{ label: "Blog", href: "/blog" },
+	{ label: "Home", href: "#hero" },
 ];
 
 export const footerSocialLinks: FooterSocialLink[] = [
