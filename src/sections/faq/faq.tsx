@@ -31,8 +31,8 @@ export default function FAQ() {
 	return (
 		<Section
 			id="faq"
-			title="Answer common pre-project questions"
-			description="Explain your process, timelines, and collaboration style so leads know what to expect before reaching out."
+			title="Questions clients ask—and how I work"
+			description="Short answers in my own words: what I take on, how we start, how we stay in sync, timelines, IP, after launch, quality, and pricing."
 			className="flex flex-col gap-6"
 			badgeText="FAQ"
 			badgeIcon={

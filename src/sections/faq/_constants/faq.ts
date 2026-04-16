@@ -3,88 +3,89 @@ export interface FaqItem {
 	answer: string;
 }
 
+/** Client questions with first-person answers (you → the engineer). */
 export const faqItems: FaqItem[] = [
 	{
-		question: "What type of work can I showcase here?",
+		question: "What kinds of software work do you take on?",
 		answer:
-			"Use this answer to outline the kind of projects you take on mobile apps, SaaS dashboards, creative campaigns, installations, you name it. Mention the industries or team sizes you typically collaborate with.",
+			"I focus on full-stack product work: web apps and dashboards, REST and GraphQL APIs, databases, auth and payments, and integrations with tools you already use (CRM, analytics, email, and so on). I also help with cloud deploys, CI/CD, and performance tuning. If you tell me your goal and deadline, I will be honest about whether I am the right fit—or what I would need to say yes.",
 	},
 	{
-		question: "How should I describe my process?",
+		question: "How does a project usually start?",
 		answer:
-			"Walk visitors through your approach from kickoff to launch. Touch on discovery, design handoff, development milestones, QA, and how you wrap projects to keep expectations clear.",
+			"I start with a short discovery: who the users are, what “done” looks like, must-haves versus nice-to-haves, and any technical constraints. That is usually one or two calls plus a written summary. After that I send a proposed approach, rough milestones, and what I need from you (access, design, decisions) before I write a lot of production code. I do not like surprises mid-build, so I front-load clarity.",
 	},
 	{
-		question: "What timelines should I mention?",
+		question: "How do we stay aligned while work is in progress?",
 		answer:
-			"Share realistic ranges for the work you do most often. Highlight the factors that can speed things up or slow them down so prospects understand how to plan with you.",
+			"I keep everything in a shared board or issue tracker so you always see what is in progress, blocked, or waiting on you. I send a concise written update on a cadence we agree on—often weekly—and I demo working software when it makes sense, not only at the end. If something changes priority, we reprioritize together and I call out schedule impact early.",
 	},
 	{
-		question: "How do I talk about collaboration?",
+		question: "How long will my project take?",
 		answer:
-			"Explain how you plug into existing teams, whether you provide async updates, and what tools (Figma, Linear, Slack, etc.) you prefer for smooth communication.",
+			"I give you a range based on scope and how fast we can get feedback—not a fake exact date. A tight MVP or single feature might be a few weeks; a larger product is often months. If requirements shift or approvals slow down, I will tell you how that affects the plan. I would rather reset expectations once than miss a deadline quietly.",
 	},
 	{
-		question: "Which tools or stack belong here?",
+		question: "Who owns the code and intellectual property?",
 		answer:
-			"List the technologies that define your work frameworks, animation libraries, prototyping tools, or 3D workflows. This helps clients match you with the right projects.",
+			"Once you have paid per our agreement, I hand you the repo, credentials, and documentation you need to run and extend the work. You own the custom deliverables we scoped unless we explicitly agreed otherwise (for example, my reuse of small internal utilities or open-source libraries under their licenses). I put IP, handover, and third-party licenses in writing before we start so there is no ambiguity.",
 	},
 	{
-		question: "Can I mention availability?",
+		question: "What happens after launch—support and changes?",
 		answer:
-			"Absolutely. Let people know if youre booking a month out, available instantly, or only taking on retainers. It saves back-and-forth and sets an immediate expectation.",
+			"I include a sensible handover: how to deploy, how to configure env vars, and where the important logic lives. I usually reserve a short window after go-live for critical fixes we agree count as launch defects. Anything new—features, refactors, SLAs—is scoped separately, either as a small follow-on project or a retainer if you want me on call. I will spell out what is in scope at launch versus what is new work.",
 	},
 	{
-		question: "Should I cover pricing?",
+		question: "How do you handle quality, testing, and security?",
 		answer:
-			"If youre comfortable sharing, outline the formats you offer: fixed bids, retainers, sprints, or day rates. Even a simple range provides clarity for new leads.",
+			"I write automated tests where they pay off, exercise critical paths manually before release, and use code review or pairing when it helps. I keep secrets out of the repo, use staged environments where possible, and I am careful about access and data handling. I will not promise zero bugs—software does not work that way—but I will explain what I tested and what risk remains, especially if you handle regulated or sensitive data.",
 	},
 	{
-		question: "What if someone needs more info?",
+		question: "How does pricing and contracting usually work?",
 		answer:
-			"Encourage visitors to reach out with anything not covered above. Point them to your contact form or email so they know exactly how to start the conversation.",
+			"I am comfortable with fixed price when the scope is clear enough to estimate, time-and-materials with a cap when exploration is part of the work, or a monthly retainer when you want ongoing capacity. I use a simple contract or statement of work: scope, milestones, payment schedule, change process, and what happens if we pause or stop. Ask me for a ballpark after discovery—I prefer quoting once I understand the problem, not from a one-line email.",
 	},
 ];
 
 export const faqItemsMobile: FaqItem[] = [
 	{
-		question: "What projects fit here?",
+		question: "What software work do you take on?",
 		answer:
-			"Describe the type of work you love doing and who its for so new leads know theyre in the right place.",
+			"I build web apps, APIs, integrations, and cloud-backed features end-to-end. Tell me your goal—I will say if I am a fit or what I would need.",
 	},
 	{
-		question: "Whats the process?",
+		question: "How does a project start?",
 		answer:
-			"Outline your workflow at a high level discovery, build, launch to show how organized you are.",
+			"I run a short discovery, then share a plan and milestones before heavy development. I front-load decisions so we avoid mid-project surprises.",
 	},
 	{
-		question: "How fast can things ship?",
+		question: "How do we stay aligned?",
 		answer:
-			"Give a rough range for common engagements and call out what makes timelines move up or down.",
+			"I use a shared board, regular updates, and demos when useful. You always see what is blocked or waiting on you.",
 	},
 	{
-		question: "How do we collaborate?",
+		question: "How long will it take?",
 		answer:
-			"List the tools you prefer and whether you plug into existing teams, handle communication async, or lead the project.",
+			"I quote ranges based on scope and feedback speed. Small work can be weeks; bigger products often months. I flag when scope changes move dates.",
 	},
 	{
-		question: "What tools do you use?",
+		question: "Who owns the code?",
 		answer:
-			"Share your primary stack or platforms. People searching for a specialist will thank you.",
+			"You own what we agreed once paid—repo, docs, handover. I spell out IP and licenses in the contract before we start.",
 	},
 	{
-		question: "Are you available?",
+		question: "What about after launch?",
 		answer:
-			"Let folks know if youre open for new work now, booking next quarter, or taking on limited engagements.",
+			"I hand over runbooks and access, and we agree a short post-launch fix window. New features or SLAs are scoped separately.",
 	},
 	{
-		question: "How do you price projects?",
+		question: "Quality and security?",
 		answer:
-			"Reference your preferred model (fixed scope, sprint-based, or retainers) and invite people to request a quote.",
+			"I test what matters, review critical code, and handle secrets and data carefully. I am upfront about risk—I do not promise zero bugs.",
 	},
 	{
-		question: "Need something else?",
+		question: "Pricing and contracts?",
 		answer:
-			"Remind visitors they can always message you through the contact form for anything not covered here.",
+			"I use fixed, T&M with a cap, or retainers depending on clarity. Everything goes in a written SOW: scope, payments, changes, and pause/exit.",
 	},
 ];
