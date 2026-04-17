@@ -8,10 +8,10 @@ export default function Services() {
 	return (
 		<Section
 			id="services"
-			title="Showcase the services you offer"
-			description="Summarize the type of projects you take on, the tools you use, or the problems you help teams solve."
+			title="Custom software, design handoff, and engineering discipline"
+			description="Three ways I work with teams: tailored product builds guided by agile delivery, turning product and UI intent into shipped features, and keeping code reviewable and ready for the next release."
 			className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-			badgeText="What you do"
+			badgeText="Services"
 			badgeIcon={<StarIcon aria-hidden="true" />}
 		>
 			{serviceFeatures.map((feature) => {

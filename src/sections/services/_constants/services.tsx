@@ -56,41 +56,42 @@ export const convertingCardIcons: ConvertingCardIconSet = {
 	],
 };
 
-export const serviceItems: ServiceItem[] = [
+/** Seven principles from the Agile Manifesto, shown in the first service card animation. */
+export const agileMethodologyPrinciples: ServiceItem[] = [
 	{
-		name: "Service Package 01",
+		name: "Customer value first",
 		description:
-			"Swap in the flagship engagement you offer most often — outline the scope, duration, and business outcome.",
+			"Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.",
 	},
 	{
-		name: "Service Package 02",
+		name: "Welcome change",
 		description:
-			"Use this slot for a second offer or retainer tier to highlight how you support different client needs.",
+			"Changing requirements late in development are harnessed for the customer's competitive advantage.",
 	},
 	{
-		name: "Dedicated Sprint",
+		name: "Deliver working software frequently",
 		description:
-			"Describe a focused two-to-four week collaboration you run to tackle a single feature, redesign, or prototype.",
+			"Ship on a short cadence—from weeks to months—with a bias toward the shortest cycle that still adds value.",
 	},
 	{
-		name: "Advisory Session",
+		name: "Business and developers together",
 		description:
-			"Note how teams can book strategy calls, technical audits, or office hours when they need a quick unblock.",
+			"Product stakeholders and engineers collaborate daily so intent, tradeoffs, and priorities stay aligned.",
 	},
 	{
-		name: "Launch Support",
+		name: "Motivated individuals",
 		description:
-			"Explain the handoff, QA, and deployment support you bring during product launches or campaign pushes.",
+			"Build around trusted people, give them the environment and support they need, and let them own the outcome.",
 	},
 	{
-		name: "Optimization Pass",
+		name: "Working software measures progress",
 		description:
-			"Reserve this line for performance, accessibility, or UX audits that keep shipped work feeling polished.",
+			"Running, tested product—not documents alone—is the primary signal that you are moving the needle.",
 	},
 	{
-		name: "Systems Audit",
+		name: "Sustainable pace and technical excellence",
 		description:
-			"Call out any platform review, stack migration, or modernization work that keeps teams prepared for scale.",
+			"Maintain a steady rhythm indefinitely; continuous attention to good design and quality sustains agility.",
 	},
 ];
 
@@ -149,18 +150,18 @@ export const bestPractices: ServiceItem[] = [
 
 export const serviceFeatures: ServiceFeature[] = [
 	{
-		name: "Service Overview",
+		name: "Custom Software Solutions",
 		description:
-			"Swap in a short blurb that explains what types of projects you take on and how clients can engage.",
+			"End-to-end web, mobile, and AI-powered solutions—discovery through implementation and release—shaped by agile delivery, clear ownership, and steady iteration.",
 		href: "#",
 		className: "col-span-1",
-		background: <ServicesCardContent items={serviceItems} />,
+		background: <ServicesCardContent items={agileMethodologyPrinciples} />,
 	},
 
 	{
 		name: "From Design To Build",
 		description:
-			"Use this tile to describe how you translate Figma boards, decks, or briefs into production-ready work.",
+			"I turn briefs, specs, and design assets into clean, tested, and deployable software that your team can confidently extend.",
 		href: "#",
 		className: "col-span-1",
 		background: <ConvertingCardContent icons={convertingCardIcons} />,
@@ -169,7 +170,7 @@ export const serviceFeatures: ServiceFeature[] = [
 	{
 		name: "Code Standards",
 		description:
-			"Outline the engineering values, review rituals, or guardrails that keep your work maintainable.",
+			"Clean, maintainable code built with strict standards, clean architecture, code reviews, and automated testing — keeping your codebase scalable and easy to extend.",
 		href: "#",
 		className: "col-span-1",
 		background: <CleanCodeCardContent items={bestPractices} />,
