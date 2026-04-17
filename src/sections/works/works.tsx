@@ -21,6 +21,7 @@ export default function Works() {
 					description={item.description}
 					technologies={item.technologies}
 					link={item.link}
+					imageBackdrop={item.imageBackdrop}
 				/>
 			))}
 		</Section>

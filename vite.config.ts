@@ -16,7 +16,34 @@ export default defineConfig(({ command, mode }) => {
   const isBuild = command === "build" || mode === "production";
 
   return {
+    // Prevents esbuild from scanning @tanstack/start-server-core before the Start
+    // plugin injects virtual imports (#tanstack-router-entry, etc.). See:
+    // https://github.com/TanStack/router/issues/5795
+    optimizeDeps: {
+      exclude: [
+        "@tanstack/start-server-core",
+        "@tanstack/start-client-core",
+        "@tanstack/react-start",
+        "@tanstack/react-start-server",
+        "@tanstack/react-start-client",
+      ],
+    },
+    ssr: {
+      optimizeDeps: {
+        exclude: [
+          "@tanstack/start-server-core",
+          "@tanstack/start-client-core",
+          "@tanstack/react-start",
+          "@tanstack/react-start-server",
+          "@tanstack/react-start-client",
+        ],
+      },
+    },
     plugins: [
+      viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
+      tanstackStart(),
+      viteReact(),
+      tailwindcss(),
       devtools(),
       nitro(
         isBuild
@@ -28,10 +55,6 @@ export default defineConfig(({ command, mode }) => {
           : undefined
       ),
       contentCollections(),
-      viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
-      tailwindcss(),
-      tanstackStart(),
-      viteReact(),
       mdx({
         remarkPlugins: [remarkGfm, remarkFrontmatter, remarkMdxFrontmatter],
         rehypePlugins: [

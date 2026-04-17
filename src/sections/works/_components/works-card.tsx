@@ -1,11 +1,16 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Icons } from "@/lib/icons";
 import { cn } from "@/lib/utils";
+import type { WorksImageBackdrop } from "@/sections/works/_constants/works";
+
+/** OG-style project preview ratio (e.g. 1200×630). */
+const PROJECT_IMAGE_RATIO = 1200 / 630;
 
 interface WorksCardProps {
 	images: string[];
@@ -13,6 +18,7 @@ interface WorksCardProps {
 	description: string;
 	technologies: string[];
 	link: string;
+	imageBackdrop?: WorksImageBackdrop;
 }
 
 export default function WorksCard({
@@ -21,25 +27,26 @@ export default function WorksCard({
 	description,
 	technologies,
 	link,
+	imageBackdrop,
 }: WorksCardProps) {
 	const [index, setIndex] = useState(0);
 	const count = images.length;
 	const safeIndex = count > 0 ? Math.min(index, count - 1) : 0;
-	const currentSrc = images[safeIndex] ?? "";
 	const showNav = count > 1;
+	const canGoPrev = showNav && safeIndex > 0;
+	const canGoNext = showNav && safeIndex < count - 1;
 
 	const goPrev = useCallback(() => {
-		setIndex((i) => (i - 1 + count) % count);
-	}, [count]);
+		setIndex((i) => Math.max(0, i - 1));
+	}, []);
 
 	const goNext = useCallback(() => {
-		setIndex((i) => (i + 1) % count);
+		setIndex((i) => Math.min(count - 1, i + 1));
 	}, [count]);
 
 	return (
 		<Card className="w-full overflow-hidden border-border/80 bg-card">
-			<div className="flex min-h-[20rem] flex-col md:min-h-[24rem] md:flex-row md:items-stretch lg:min-h-[28rem]">
-
+			<div className="flex min-h-0 flex-col md:flex-row md:items-stretch">
 				{/* LEFT SIDE */}
 				<div className="flex min-w-0 flex-1 flex-col justify-between gap-6 p-6 sm:p-8 md:max-w-[55%] md:p-9 lg:gap-8 lg:p-10">
 					<div className="space-y-3">
@@ -53,7 +60,12 @@ export default function WorksCard({
 
 						<div className="flex flex-wrap gap-2 pt-1">
 							{technologies.map((tech) => (
-								<Badge key={tech} variant="secondary" size="sm" className="font-normal">
+								<Badge
+									key={tech}
+									variant="secondary"
+									size="sm"
+									className="font-normal"
+								>
 									{tech}
 								</Badge>
 							))}
@@ -69,21 +81,81 @@ export default function WorksCard({
 					</div>
 				</div>
 
-				{/* RIGHT SIDE (FIXED STRUCTURE) */}
+				{/* IMAGE — 1200×630 frame, symmetric padding on mobile */}
 				<div
 					className={cn(
-						"relative flex min-h-[14rem] w-full shrink-0 flex-col",
+						"relative flex w-full shrink-0 flex-col",
 						"border-t border-border/60 bg-muted/20",
-						"md:min-h-0 md:w-[min(45%,28rem)] md:flex-1 md:border-t-0",
+						"px-3 pb-3 pt-3 md:min-h-0 md:w-[min(45%,28rem)] md:flex-1 md:border-t-0 md:px-3 md:py-3",
 					)}
 				>
-					<div className="relative flex h-full min-h-[12rem] flex-1 flex-col md:min-h-0">
-						{showNav ? (
+					<div
+						className="relative w-full overflow-hidden rounded-2xl border border-border/50 bg-card-elevated shadow-sm"
+						style={{ aspectRatio: PROJECT_IMAGE_RATIO }}
+					>
+						{imageBackdrop ? (
+							<div
+								className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]"
+								aria-hidden
+							>
+								<div
+									className="absolute left-1/2 top-[46%] w-[min(132%,26rem)] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.38] blur-[52px] md:w-[min(140%,32rem)] md:blur-[68px]"
+									style={{
+										aspectRatio: "1",
+										background: `radial-gradient(circle at 50% 50%, ${imageBackdrop.accent} 0%, transparent 68%)`,
+									}}
+								/>
+								<div
+									className="absolute left-[58%] top-[58%] w-[min(100%,20rem)] max-w-[75vw] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.22] blur-[44px] md:blur-[56px]"
+									style={{
+										aspectRatio: "1",
+										background: `radial-gradient(circle at 50% 50%, ${imageBackdrop.accentSoft ?? imageBackdrop.accent} 0%, transparent 72%)`,
+									}}
+								/>
+							</div>
+						) : null}
+
+						{count > 0 ? (
+							<div className="relative z-10 h-full w-full min-h-0 overflow-hidden">
+								<motion.div
+									className="flex h-full"
+									style={{ width: `${count * 100}%` }}
+									initial={false}
+									animate={{
+										x: `${-(safeIndex * 100) / count}%`,
+									}}
+									transition={{
+										duration: 0.42,
+										ease: [0.22, 1, 0.36, 1],
+									}}
+								>
+									{images.map((src, i) => (
+										<div
+											key={`${title}-${i}-${src}`}
+											className="relative h-full shrink-0 overflow-hidden"
+											style={{ width: `${100 / count}%` }}
+										>
+											<img
+												src={src}
+												alt={`${title} — image ${i + 1} of ${count}`}
+												width={1200}
+												height={630}
+												className="absolute inset-0 size-full object-cover object-center"
+												decoding="async"
+												draggable={false}
+											/>
+										</div>
+									))}
+								</motion.div>
+							</div>
+						) : null}
+
+						{canGoPrev ? (
 							<Button
 								type="button"
 								variant="icon"
 								size="md"
-								className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-border bg-card shadow-md"
+								className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-border bg-card/95 shadow-md backdrop-blur-sm md:left-3"
 								aria-label="Previous image"
 								onClick={goPrev}
 							>
@@ -91,37 +163,12 @@ export default function WorksCard({
 							</Button>
 						) : null}
 
-						<div className="relative my-3 mr-3 min-h-0 flex-1 overflow-hidden rounded-2xl border border-border/50 bg-card-elevated shadow-sm">
-
-							{count > 0 ? (
-								<div className="absolute top-3 left-1/2 z-10 -translate-x-1/2">
-									<Badge
-										variant="secondary"
-										size="sm"
-										className="border border-border/60 bg-popover/95 font-medium shadow-sm backdrop-blur-sm"
-									>
-										{safeIndex + 1} / {count}
-									</Badge>
-								</div>
-							) : null}
-
-							{currentSrc ? (
-								<img
-									src={currentSrc}
-									alt={`${title} — image ${safeIndex + 1} of ${count}`}
-									width={1920}
-									height={1080}
-									className="size-full min-h-[12rem] object-cover object-center md:min-h-0"
-								/>
-							) : null}
-						</div>
-
-						{showNav ? (
+						{canGoNext ? (
 							<Button
 								type="button"
 								variant="icon"
 								size="md"
-								className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-border bg-card shadow-md"
+								className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-border bg-card/95 shadow-md backdrop-blur-sm md:right-3"
 								aria-label="Next image"
 								onClick={goNext}
 							>
@@ -130,7 +177,6 @@ export default function WorksCard({
 						) : null}
 					</div>
 				</div>
-
 			</div>
 		</Card>
 	);
