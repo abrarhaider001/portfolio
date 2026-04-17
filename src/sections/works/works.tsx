@@ -7,8 +7,8 @@ export default function Works() {
 	return (
 		<Section
 			id="works"
-			title="Preview a few highlight projects"
-			description="Swap in real case studies that show your range — from product builds to creative experiments."
+			title="Featured builds and products"
+			description="Representative web product work—surfaces, flows, and full-stack delivery—showing how scoped features move from implementation to stable, shippable releases."
 			className="grid grid-cols-1 gap-4"
 			badgeText="Featured projects"
 			badgeIcon={<GridIcon aria-hidden="true" className="size-3.5" />}

@@ -8,37 +8,58 @@ export interface TestimonialType {
 export const testimonials: TestimonialType[] = [
 	{
 		content:
-			"Working with this developer has significantly improved my digital presence. His attention to detail and creative approach exceeded my expectations.",
-		author: "Bill Gates",
-		position: "Tech Entrepreneur",
+			"Clear updates, fast turnaround, and production-quality code. We kept scope tight on Upwork and they still over-delivered on polish.",
+		author: "Zainab Al-Mutairi",
+		position: "Collaborator · Upwork",
 		imageSrc: "/placeholder-2.jpg",
 	},
 	{
 		content:
-			"His technical expertise and creativity are exceptional. He didn't just meet our goals – he helped us see the project from a new perspective.",
-		author: "Elon Musk",
-		position: "CEO, SpaceY",
+			"Hired through Fiverr for a full-stack slice of our product. Communication was easy across time zones and the handoff documentation was spot on.",
+		author: "Priya Menon",
+		position: "Collaborator · Fiverr",
 		imageSrc: "/placeholder-2.jpg",
 	},
 	{
 		content:
-			"His innovative approach to problem-solving and commitment to the project made a strong impression. The results speak for themselves.",
-		author: "Marie Curie",
-		position: "Scientist",
+			"Professional from the first milestone on Upwork—asks the right questions, ships tested features, and stays calm when requirements shift.",
+		author: "Omar Hassan",
+		position: "Collaborator · Upwork",
 		imageSrc: "/placeholder-2.jpg",
 	},
 	{
 		content:
-			"Working with Marek has been seamless and professional. His responsiveness and ability to deliver beyond expectations set him apart.",
-		author: "Ada Lovelace",
-		position: "Computing Pioneer",
+			"We needed someone who could own a feature end to end. On Fiverr they felt less like a gig and more like a partner on our roadmap.",
+		author: "Ayesha Siddiqui",
+		position: "Collaborator · Fiverr",
 		imageSrc: "/placeholder-2.jpg",
 	},
 	{
 		content:
-			"Great collaboration and clear communication throughout. His input on design was invaluable, and the results exceeded expectations.",
-		author: "Steve Jobs",
-		position: "Co-Founder, Pear Inc.",
+			"Solid engineering and no drama. Contract was through Upwork; delivery matched what was proposed on the kickoff call.",
+		author: "Rajesh Iyer",
+		position: "Collaborator · Upwork",
+		imageSrc: "/placeholder-2.jpg",
+	},
+	{
+		content:
+			"We ran a short Fiverr sprint for our admin dashboard from Dubai. UI matched the brief and the API work was clean.",
+		author: "Layla Farah",
+		position: "Collaborator · Fiverr",
+		imageSrc: "/placeholder-2.jpg",
+	},
+	{
+		content:
+			"Found them on Upwork for a React + Node integration. Reviews were right: responsive, detail-oriented, and easy for our team to extend.",
+		author: "Mei-Lin Zhou",
+		position: "Collaborator · Upwork",
+		imageSrc: "/placeholder-2.jpg",
+	},
+	{
+		content:
+			"Repeat Fiverr client—third small project together. Same quality each time; they remember context from earlier jobs which saves us hours.",
+		author: "Yusuf Rahman",
+		position: "Collaborator · Fiverr",
 		imageSrc: "/placeholder-2.jpg",
 	},
 ];
