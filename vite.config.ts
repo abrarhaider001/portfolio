@@ -4,12 +4,16 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import viteTsConfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
+import { nitro } from 'nitro/vite'
 import contentCollections from "@content-collections/vite"
 import mdx from "@mdx-js/rollup"
 import remarkGfm from "remark-gfm"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import rehypePrettyCode from "rehype-pretty-code"
+
+/** Required for TanStack Start on Vercel (Nitro → serverless output). Keep last so other plugins configure Vite first. */
+const nitroPlugin = nitro()
 
 export default defineConfig(() => {
   return {
@@ -69,6 +73,8 @@ export default defineConfig(() => {
         ],
         providerImportSource: "@mdx-js/react",
       }),
+
+      nitroPlugin,
     ],
   }
 })
