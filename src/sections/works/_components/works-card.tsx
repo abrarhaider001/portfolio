@@ -36,6 +36,9 @@ export default function WorksCard({
 	const canGoPrev = showNav && safeIndex > 0;
 	const canGoNext = showNav && safeIndex < count - 1;
 
+	const isExternalLink =
+		link.startsWith("http://") || link.startsWith("https://");
+
 	const goPrev = useCallback(() => {
 		setIndex((i) => Math.max(0, i - 1));
 	}, []);
@@ -74,7 +77,12 @@ export default function WorksCard({
 
 					<div className="flex shrink-0 pt-1">
 						<Button asChild size="sm">
-							<a href={link} target="_blank" rel="noreferrer">
+							<a
+								href={link}
+								{...(isExternalLink
+									? { target: "_blank", rel: "noreferrer" }
+									: {})}
+							>
 								View project
 							</a>
 						</Button>

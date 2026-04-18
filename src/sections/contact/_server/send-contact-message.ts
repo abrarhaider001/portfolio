@@ -8,10 +8,10 @@ export type SendContactMessageResponse = { success: true };
 export const sendContactMessage = createServerFn({ method: "POST" })
 	.inputValidator(contactSchema)
 	.handler(async ({ data }) => {
-		const resendKey = process.env.RESEND_API_KEY;
-		const to = process.env.RESEND_TO_EMAIL;
+		const resendKey = process.env.RESEND_API_KEY?.trim();
+		const to = process.env.RESEND_TO_EMAIL?.trim();
 		const from =
-			process.env.RESEND_FROM_EMAIL ??
+			process.env.RESEND_FROM_EMAIL?.trim() ||
 			"Portfolio Contact <onboarding@resend.dev>";
 
 		if (!resendKey) {
